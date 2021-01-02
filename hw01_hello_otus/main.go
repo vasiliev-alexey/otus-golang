@@ -1,8 +1,9 @@
 package main
 
 import (
-	"github.com/golang/example/stringutil"
 	"os"
+
+	"github.com/golang/example/stringutil"
 )
 
 func main() {
