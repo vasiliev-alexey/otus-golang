@@ -1,4 +1,4 @@
-module github.com/vasiliev-alexey/hw01_hello_otus
+module github.com/vasiliev-alexey/otus-golang/hw01_hello_otus
 
 go 1.15
 
