@@ -1,4 +1,4 @@
-module github.com/vasiliev-alexey/hw02_unpack_string
+module github.com/vasiliev-alexey/otus-golang/hw02_unpack_string
 
 go 1.15
 
