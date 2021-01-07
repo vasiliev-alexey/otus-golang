@@ -5,7 +5,6 @@ import (
 	"strings"
 )
 
-//var regexpExp = regexp.MustCompile(`\s`)
 var regexpEndSymbols = regexp.MustCompile(`^[[:punct:]]*|[[:punct:]]*?$`)
 
 func Top10(sourceString string) []string {
