@@ -1,6 +1,7 @@
 package hw03_frequency_analysis //nolint:golint
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -74,14 +75,26 @@ func TestTopDash(t *testing.T) {
 	t.Run("dash test", func(t *testing.T) {
 		expected := []string{"test", "data"}
 		data := "- - -  test data"
+		rez := Top10(data)
+		fmt.Println(rez)
 		require.ElementsMatch(t, expected, Top10(data))
 	})
 }
 
 func TestTopNonCyrillic(t *testing.T) {
 	t.Run("dash test", func(t *testing.T) {
-		expected := []string{"test", "data", "фыва"}
+		expected := []string{"фыва", "test", "data"}
 		data := "- фыва -  фыва -  test data"
-		require.ElementsMatch(t, expected, Top10(data))
+		rez := Top10(data)
+		require.ElementsMatch(t, expected, rez)
+	})
+}
+
+func TestTopOrder(t *testing.T) {
+	t.Run("test one", func(t *testing.T) {
+		want := []string{"это", "и", "какой-то", "какойто", "не", "разные", "слова", "слово", "тире"}
+		text := `"какой-то" и "какойто" - это разные слова, "-" (тире) - это не слово.`
+		rez := Top10(text)
+		require.Equal(t, want, rez)
 	})
 }
