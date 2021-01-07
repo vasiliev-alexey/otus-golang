@@ -1,13 +1,14 @@
 package hw03_frequency_analysis //nolint:golint
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/require"
 )
 
 // Change to true if needed
-var taskWithAsteriskIsCompleted = false
+var taskWithAsteriskIsCompleted = true
 
 var text = `Как видите, он  спускается  по  лестнице  вслед  за  своим
 	другом   Кристофером   Робином,   головой   вниз,  пересчитывая
@@ -53,8 +54,47 @@ func TestTop10(t *testing.T) {
 			expected := []string{"он", "а", "и", "что", "ты", "не", "если", "то", "его", "кристофер", "робин", "в"}
 			require.Subset(t, expected, Top10(text))
 		} else {
+			// flaked test -  мигает на сортировках
 			expected := []string{"он", "и", "а", "что", "ты", "не", "если", "-", "то", "Кристофер"}
 			require.ElementsMatch(t, expected, Top10(text))
 		}
+	})
+}
+
+func TestTopLeg(t *testing.T) {
+	t.Run("positive test", func(t *testing.T) {
+
+		// flaked test -  мигает на сортировках
+		expected := []string{"нога", "и", "это", "одинаковые", "слова"}
+		legText := "Нога и нога - это одинаковые слова, нога!, нога и  'нога'  - это одинаковые слова;"
+		require.ElementsMatch(t, expected, Top10(legText))
+	})
+}
+
+func TestTopDash(t *testing.T) {
+	t.Run("dash test", func(t *testing.T) {
+		expected := []string{"test", "data"}
+		data := "- - -  test data"
+		rez := Top10(data)
+		fmt.Println(rez)
+		require.ElementsMatch(t, expected, Top10(data))
+	})
+}
+
+func TestTopNonCyrillic(t *testing.T) {
+	t.Run("dash test", func(t *testing.T) {
+		expected := []string{"фыва", "test", "data"}
+		data := "- фыва -  фыва -  test data"
+		rez := Top10(data)
+		require.ElementsMatch(t, expected, rez)
+	})
+}
+
+func TestTopOrder(t *testing.T) {
+	t.Run("test one", func(t *testing.T) {
+		want := []string{"это", "и", "какой-то", "какойто", "не", "разные", "слова", "слово", "тире"}
+		text := `"какой-то" и "какойто" - это разные слова, "-" (тире) - это не слово.`
+		rez := Top10(text)
+		require.Equal(t, want, rez)
 	})
 }
