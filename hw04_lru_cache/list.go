@@ -17,8 +17,6 @@ type listItem struct {
 }
 
 type list struct {
-	// Place your code here
-
 	length    int
 	firstItem *listItem
 	lastItem  *listItem
@@ -109,18 +107,10 @@ func (l *list) MoveToFront(i *listItem) {
 		return
 	}
 
-	//  fmt.Println(l.firstItem)
-	//  fmt.Println(l.lastItem)
-	//	fmt.Printf("MoveToFront = %d %v  %v\n", l.length, l.Front(), l.Back())
 	l.Remove(i)
-	//  fmt.Printf("MoveToFront = %d %v  %v\n", l.length, l.Front(), l.Back())
-	//  fmt.Println(l.firstItem)
-	//  fmt.Println(l.lastItem)
 
 	prev := l.firstItem
-	//	fmt.Printf("MoveToFront prev =    %v\n", prev)
 	prev.Prev = i
-	//	fmt.Printf("MoveToFront 2 prev =    %v\n", prev)
 	i.Next = prev
 	l.firstItem = i
 	i.Prev = nil

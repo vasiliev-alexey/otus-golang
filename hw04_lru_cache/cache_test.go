@@ -1,6 +1,5 @@
 package hw04_lru_cache //nolint:golint,stylecheck
 import (
-	"fmt"
 	"math/rand"
 	"strconv"
 	"sync"
@@ -133,7 +132,6 @@ func TestCache(t *testing.T) {
 				delete(cacheItems, item.(string))
 			}
 		}
-		fmt.Println(cacheItems)
 		require.True(t, len(cacheItems) == 1, "В живых остался только один")
 
 	})
